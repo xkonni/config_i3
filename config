@@ -17,7 +17,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+p exec dmenu_run
 
 # change focus
 bindsym $mod+h focus left
@@ -55,7 +55,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -81,12 +81,25 @@ bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
 
+# move focused container between monitors
+bindsym $mod+o move container to output right
+bindsym $mod+Escape workspace back_and_forth
+
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# exit i3
+mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" {
+        bindsym l exit
+        bindsym s mode "default"; exec pkill i3-nagbar; exec systemctl suspend
+        bindsym h mode "default"; exec pkill i3-nagbar; exec systemctl hibernate
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"; exec pkill i3-nagbar
+        bindsym Escape mode "default"; exec pkill i3-nagbar
+}
+bindsym $mod+Shift+e mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" exec "i3-nagbar -t warning -m 'Exit' -b 'Logout' 'exit' -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -100,7 +113,6 @@ mode "resize" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
 # Solarized theme
