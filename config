@@ -140,6 +140,11 @@ set $fg_urgent  #dc332f
 set $bg_urgent  #3F3F3F
 
 
+# Border style
+# <normal [n]|pixel [n]|none>
+new_window pixel
+new_float  normal 1
+
 # Client colors
 # colorclass            <border>    <bg>        <text>
 client.focused          $bg_focus   $bg_focus   $fg_focus
