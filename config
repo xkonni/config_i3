@@ -170,7 +170,7 @@ bar {
 
   font            pango:Anonymous Pro for Powerline 11
   position        top
-  status_command  $HOME/.config/i3/conky-i3bar
+  status_command  $HOME/.config/i3/i3bar-conky
 }
 
 # Workspaces

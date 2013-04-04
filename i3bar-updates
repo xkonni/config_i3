@@ -1,0 +1,14 @@
+#!/bin/bash
+upd=$(pacman -Qu | wc -l)
+
+case $upd in
+  0)
+    echo no updates
+    ;;
+  1)
+    echo 1 update
+    ;;
+  *)
+    echo $upd updates
+    ;;
+esac

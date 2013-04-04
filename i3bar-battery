@@ -1,0 +1,24 @@
+#!/bin/bash
+BAT=/sys/class/power_supply/BAT1
+energy_now=$(cat $BAT/energy_now)
+energy_full=$(cat $BAT/energy_full)
+power_now=$(cat $BAT/power_now)
+status=$(cat $BAT/status)
+
+case "$status" in
+  "Charging")
+    time=$(echo "scale=0; ($energy_full-$energy_now)*60/$power_now" | bc)
+    ;;
+  "Discharging")
+    time=$(echo "scale=0; $energy_now*60/$power_now" | bc)
+    ;;
+  *)
+    time=0
+    ;;
+esac
+
+hours=$(echo $time/60 | bc)
+minutes=$(echo "$time-$hours*60" | bc)
+[ $minutes -le 9 ] && minutes=0${minutes}
+
+echo ${hours}:${minutes}
