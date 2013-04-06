@@ -1,0 +1,39 @@
+# vim: filetype=rc:
+# conky
+#out_to_x                no
+#override_utf8_locale    no
+#own_window              no
+
+# conky-cli
+background              no
+out_to_console          yes
+update_interval         2.0
+total_run_times         0
+short_units             yes
+use_spacer              left
+cpu_avg_samples         2
+max_text_width          0
+
+# JSON for i3bar
+TEXT
+
+[ \
+  { "full_text" : " | load ", "color" : "\#EEE8D5", "separator" : false, "separator_block_width" : 3 }, \
+  { "full_text" : "${loadavg }", "color" : ${if_match ${loadavg 1}>5}"\#DC322F" ${else}"\#268BD2"${endif}, "separator" : false, "separator_block_width" : 3 }, \
+\
+  { "full_text" : " cpu ", "color" : "\#EEE8D5", "separator" : false, "separator_block_width" : 3 }, \
+  { "full_text" : "${cpu cpu0}%", "color" : ${if_match ${cpu cpu0}>50}"\#DC322F"${else}"\#268BD2"${endif}, "min_width" : 25, "separator" : false, "separator_block_width" : 3 }, \
+\
+  { "full_text" : " mem ", "color" : "\#EEE8D5", "separator" : false, "separator_block_width" : 3 }, \
+  { "full_text" : "${memperc}%", "color" : ${if_match ${memperc}>50}"\#DC322F"${else}"\#268BD2"${endif}, "min_width" : 25, "separator" : false, "separator_block_width" : 3 }, \
+\
+  { "full_text" : " disk ", "color" : "\#EEE8D5", "separator" : false, "separator_block_width" : 3 }, \
+  { "full_text" : "${fs_used_perc /}% ", "color" : "\#268BD2", "separator" : false, "separator_block_width" : 3 }, \
+  { "full_text" : "${fs_used_perc /home}% ", "color" : "\#268BD2", "separator" : false, "separator_block_width" : 3 }, \
+  { "full_text" : "${fs_used_perc /extra}% ", "color" : "\#268BD2", "separator" : false, "separator_block_width" : 3 }, \
+\
+  { "full_text" : "|", "color" : "\#EEE8D5", "separator" : false, "separator_block_width" : 3 }, \
+  { "full_text" : "${time %d %B %Y %H:%M}", "color" : "\#268BD2", "separator" : false, "separator_block_width" : 3 }, \
+\
+  { "full_text" : "|", "color" : "\#EEE8D5", "separator" : false, "separator_block_width" : 3 } \
+],

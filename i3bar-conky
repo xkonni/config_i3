@@ -5,18 +5,18 @@ echo '{"version":1}'
 # Begin the endless array.
 echo '['
 # We send an empty first array of blocks to make the loop simpler:
-# echo '[],'
+echo '[],'
 # Now send blocks with information forever:
 case $(hostname) in
   "annoyance")
-    conf=conkyrc_annoyance
+    CONFIG=i3bar-conkyrc_annoyance
     ;;
   "silence")
-    conf=conkyrc_silence
+    CONFIG=i3bar-conkyrc_silence
     ;;
   *)
-    conf=conkyrc
+    CONFIG=i3bar-conkyrc
     ;;
 esac
 
-exec conky -c $HOME/.config/i3/$conf
+exec conky -c $HOME/.config/i3/$CONFIG
