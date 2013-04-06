@@ -104,16 +104,30 @@ bindsym $mod+Shift+e mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" 
 # resize window (you can also use the mouse for that)
 mode "resize" {
   # These bindings trigger as soon as you enter the resize mode
-  bindsym h resize shrink width 10 px or 10 ppt
-  bindsym j resize grow height 10 px or 10 ppt
-  bindsym k resize shrink height 10 px or 10 ppt
-  bindsym l resize grow width 10 px or 10 ppt
+  bindsym h resize shrink width   50 px
+  bindsym j resize grow   height  50 px
+  bindsym k resize shrink height  50 px
+  bindsym l resize grow   width   50 px
 
   # back to normal: Enter or Escape
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
+
+# move window (you can also use the mouse for that)
+mode "move" {
+  # These bindings trigger as soon as you enter the move mode
+  bindsym h move left  50 px
+  bindsym j move down  50 px
+  bindsym k move up    50 px
+  bindsym l move right 50 px
+
+  # back to normal: Enter or Escape
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+m mode "move"
 
 bindsym XF86Sleep             exec  "systemctl suspend"
 bindsym XF86Suspend           exec  "systemctl hibernate"
@@ -141,9 +155,8 @@ set $bg_urgent  #3F3F3F
 
 
 # Border style
-# <normal [n]|pixel [n]|none>
-new_window pixel
-new_float  normal 1
+new_window 1pixel
+new_float  normal
 
 # Client colors
 # colorclass            <border>    <bg>        <text>
@@ -180,7 +193,7 @@ workspace 2 output DVI-I-3
 assign [class="Firefox"] 1
 
 # Rules
-for_window [class="Firefox" instance="Download"] floating enable
+for_window [class="Firefox" instance="Download"] floating enable; move right 400; move down 400
 
 # Autostart
 exec $HOME/bin/autostart
