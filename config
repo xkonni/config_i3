@@ -1,3 +1,4 @@
+# vim: filetype=i3:
 # i3 config file (v4)
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
@@ -197,3 +198,4 @@ for_window [class="Firefox" instance="Download"] floating enable; move right 400
 
 # Autostart
 exec $HOME/bin/autostart
+
