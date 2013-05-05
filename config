@@ -12,7 +12,7 @@ font pango:Anonymous Pro for Powerline 11
 
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -58,6 +58,10 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+d focus child
 
+# send window to scratchpad
+bindsym $mod+n move scratchpad
+bindsym $mod+Shift+n scratchpad show
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
@@ -101,6 +105,8 @@ mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" {
         bindsym Escape mode "default"; exec pkill i3-nagbar
 }
 bindsym $mod+Shift+e mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" exec "i3-nagbar -t warning -m 'Exit' -b 'Logout' 'exit' -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate'"
+
+bindsym $mod+Shift+s exec $HOME/.config/i3/i3lock
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -212,6 +218,8 @@ assign [class="Firefox"] 1
 
 # Rules
 for_window [class="Firefox" instance="Download"] floating enable; move right 400; move down 400
+for_window [class="Xfce4-notifyd"] floating enable; border none
+for_window [class="xbmc.bin"] fullscreen
 
 # Autostart
 exec $HOME/bin/autostart
