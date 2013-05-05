@@ -157,6 +157,10 @@ bindsym XF86AudioPrev         exec  "$HOME/bin/notify_mpd prev"
 bindsym XF86WebCam            exec  "$HOME/bin/notify_mpd switch"
 bindsym XF86Display           exec  "$HOME/bin/notify_mpd"
 
+# focus certain applications
+bindsym $mod+u [class="URxvt" title="ncmpcpp"] focus
+bindsym $mod+c [class="URxvt" title="mirssi"] focus
+
 # Solarized theme
 # black dark/light
 set $color00    #073642
