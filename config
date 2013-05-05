@@ -88,7 +88,14 @@ bindsym $mod+Shift+0 move container to workspace 10
 
 # move focused container between monitors
 bindsym $mod+o move container to output right
+# move current workspace between monitors
+bindsym $mod+Shift+o move workspace to output right
+
+# move between recent workspaces
 bindsym $mod+Escape workspace back_and_forth
+
+# move back-and-forth between workspaces
+workspace_auto_back_and_forth yes
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
