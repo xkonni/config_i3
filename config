@@ -8,14 +8,14 @@ set $mod Mod4
 floating_modifier $mod
 
 # Font for window titles. Will also be used by the bar by default
-font pango:Anonymous Pro for Powerline 11
+font pango:Anonymous Pro for Powerline 12
 
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec termite
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+c kill
 
 # start dmenu (a program launcher)
 bindsym $mod+p exec dmenu_run
@@ -60,7 +60,8 @@ bindsym $mod+d focus child
 
 # send window to scratchpad
 bindsym $mod+n move scratchpad
-bindsym $mod+Shift+n scratchpad show
+bindsym $mod+Shift+n [title="^[^m].*"] scratchpad show
+bindsym $mod+c [title="mirssi"] scratchpad show
 
 # switch to workspace
 bindsym $mod+1 workspace 1
@@ -91,7 +92,7 @@ bindsym $mod+o move container to output right
 bindsym $mod+Escape workspace back_and_forth
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym $mod+Shift+x reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3
@@ -104,9 +105,10 @@ mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" {
         bindsym Return mode "default"; exec pkill i3-nagbar
         bindsym Escape mode "default"; exec pkill i3-nagbar
 }
-bindsym $mod+Shift+e mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" exec "i3-nagbar -t warning -m 'Exit' -b 'Logout' 'exit' -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate'"
+bindsym $mod+Shift+q mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" exec "i3-nagbar -t warning -m 'Exit' -b 'Logout' 'exit' -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate'"
 
 bindsym $mod+Shift+s exec $HOME/.config/i3/i3lock
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
