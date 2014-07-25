@@ -8,7 +8,7 @@ set $mod Mod4
 floating_modifier $mod
 
 # Font for window titles. Will also be used by the bar by default
-font pango:Anonymous Pro for Powerline 12
+font pango:Inconsolata for Powerline 10
 
 
 # start a terminal
@@ -44,7 +44,7 @@ bindsym $mod+f fullscreen
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+x layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -92,9 +92,9 @@ bindsym $mod+o move container to output right
 bindsym $mod+Escape workspace back_and_forth
 
 # reload the configuration file
-bindsym $mod+Shift+x reload
+bindsym $mod+Control+x reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Control+r restart
 # exit i3
 mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" {
         bindsym l exit
@@ -105,7 +105,9 @@ mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" {
         bindsym Return mode "default"; exec pkill i3-nagbar
         bindsym Escape mode "default"; exec pkill i3-nagbar
 }
-bindsym $mod+Shift+q mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" exec "i3-nagbar -t warning -m 'Exit' -b 'Logout' 'exit' -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate'"
+bindsym $mod+Control+q mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel"
+  exec "i3-nagbar -t warning -m 'Exit' -b 'Logout' 'exit'
+  -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate'"
 
 bindsym $mod+Shift+s exec $HOME/.config/i3/i3lock
 
@@ -149,8 +151,8 @@ bindsym XF86AudioNext         exec  "$HOME/bin/notify_mpd next"
 bindsym XF86AudioPlay         exec  "$HOME/bin/notify_mpd toggle"
 bindsym XF86AudioStop         exec  "$HOME/bin/notify_mpd stop"
 bindsym XF86AudioPrev         exec  "$HOME/bin/notify_mpd prev"
-bindsym XF86WebCam            exec  "$HOME/bin/notify_mpd switch"
-bindsym XF86Display           exec  "$HOME/bin/notify_mpd"
+bindsym XF86Eject             exec  "$HOME/bin/notify_mpd switch"
+bindsym XF86Tools             exec  "$HOME/bin/notify_mpd"
 
 # Solarized theme
 # black dark/light
@@ -207,20 +209,18 @@ bar {
     urgent_workspace    $background   $background   $color02
   }
 
-  font            pango:Anonymous Pro for Powerline 11
+  font            pango:Inconsolata for Powerline 10
   position        top
   status_command  $HOME/.config/i3/i3bar-conky
 }
 
 # Workspaces
 workspace 1 output DVI-I-3
-workspace 2 output DVI-I-3
 
 assign [class="Firefox"] 1
 
 # Rules
 for_window [class="Firefox" instance="Download"] floating enable; move right 400; move down 400
-for_window [class="Xfce4-notifyd"] floating enable; border none
 for_window [class="xbmc.bin"] fullscreen
 
 # Autostart
