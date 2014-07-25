@@ -8,9 +8,6 @@ echo '['
 echo '[],'
 # Now send blocks with information forever:
 case $(hostname) in
-  "annoyance")
-    CONFIG=i3bar-conkyrc_annoyance
-    ;;
   "silence")
     CONFIG=i3bar-conkyrc_silence
     ;;
