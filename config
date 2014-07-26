@@ -12,7 +12,7 @@ font pango:Inconsolata for Powerline 10
 
 ### MODES
 # resize window
-mode "resize" {
+mode "resize window" {
   bindsym h resize shrink width   50 px
   bindsym j resize grow   height  50 px
   bindsym k resize shrink height  50 px
@@ -21,8 +21,10 @@ mode "resize" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
+bindsym $mod+Shift+r mode "resize window"
+
 # move window
-mode "move" {
+mode "move window" {
   bindsym h move left  50 px
   bindsym j move down  50 px
   bindsym k move up    50 px
@@ -31,15 +33,28 @@ mode "move" {
   bindsym Return mode "default"
   bindsym Escape mode "default"
 }
-# exit i3
-mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel" {
-        bindsym l exit
-        bindsym s mode "default"; exec pkill i3-nagbar; exec systemctl suspend
-        bindsym h mode "default"; exec pkill i3-nagbar; exec systemctl hibernate
+bindsym $mod+Shift+m mode "move window"
 
-        bindsym Return mode "default"; exec pkill i3-nagbar
-        bindsym Escape mode "default"; exec pkill i3-nagbar
+# exit i3
+mode "Exit: (q)uit, (r)estart, (x)reload" {
+  bindsym q exit
+  bindsym r mode default; restart
+  bindsym x mode default; reload
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
 }
+bindsym $mod+Control+q mode "Exit: (q)uit, (r)estart, (x)reload"
+
+# launcher
+mode "Launcher: (t)hunar, (f)irefox" {
+  bindsym t mode default; exec "thunar"
+  bindsym f mode default; exec "firefox"
+
+  bindsym Return mode "default"
+  bindsym Escape mode "default"
+}
+bindsym $mod+r mode "Launcher: (t)hunar, (f)irefox"
 
 ### KEYBINDINGS
 # start a terminal
@@ -124,20 +139,8 @@ bindsym $mod+o move container to output right
 bindsym $mod+Shift+o move workspace to output right
 bindsym $mod+Escape workspace back_and_forth
 
-# reload the configuration file
-bindsym $mod+Control+x reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Control+r restart
-# exit i3
-bindsym $mod+Control+q mode "Exit, (L)ogout, (S)uspend, (H)ibernate, (ESC)Cancel"
-  exec "i3-nagbar -t warning -m 'Exit' -b 'Logout' 'exit'
-  -b 'Suspend' 'systemctl suspend' -b 'Hibernate' 'systemctl hibernate'"
 
 bindsym $mod+Shift+s exec $HOME/.config/i3/i3lock
-
-# resize/move
-bindsym $mod+Shift+r mode "resize"
-bindsym $mod+Shift+m mode "move"
 
 # media keys
 bindsym XF86AudioMute         exec  "$HOME/bin/notify_volume toggle"
