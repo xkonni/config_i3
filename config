@@ -140,7 +140,8 @@ bindsym $mod+Shift+o move workspace to output right
 bindsym $mod+Escape workspace back_and_forth
 
 
-bindsym $mod+Shift+s exec $HOME/.config/i3/i3lock
+bindsym $mod+Pause exec $HOME/bin/lock
+bindsym $mod+Control+Pause exec $HOME/bin/lock; exec systemctl suspend
 
 # media keys
 bindsym XF86AudioMute         exec  "$HOME/bin/notify_volume toggle"
